@@ -19,13 +19,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:if="${#lists.isEmpty(listeMembres)}">
-        <td colspan=3>Aucune donnée n'est disponible</td>
-      </tr>
-      <tr th:each="membre: ${listMembres}">
-        <td><span th:text="${membre.nom}">Nom</span></td>
-        <td><span th:text="${membre.prenom}">Prénom</span></td>
-      </tr>
+        <tr th:if="${#lists.isEmpty(listeMembres)}">
+          <td colspan="3">Aucune donnée n'est disponible</td>
+        </tr>
+        <tr th:each="membre : ${listeMembres}">
+          <td th:text="${membre.nomMembre}">Nom</td>
+          <td th:text="${membre.prenomMembre}">Prénom</td>
+          <td th:text="${membre.dateInscriptionMembre}">Date</td>
+        </tr>
       </tbody>
     </table>
   </body>

@@ -4,17 +4,16 @@ import java.time.LocalDate;
 
 public class Membre {
     //==== Variables ====
-    private int idMembre;
+    private Integer idMembre;
     private String nomMembre;
     private String prenomMembre;
     private LocalDate dateInscriptionMembre;
 
-    //==== Getter et Setter ====
-    public int getIdMembre() {
+    public Integer getIdMembre() {
         return idMembre;
     }
 
-    public void setIdMembre(final int idMembre) {
+    public void setIdMembre(final Integer idMembre) {
         this.idMembre = idMembre;
     }
 
@@ -43,9 +42,8 @@ public class Membre {
         this.dateInscriptionMembre = dateInscriptionMembre;
     }
 
-
     //==== Constructeurs ====
-    public Membre(final int idMembre, final String nomMembre,
+    public Membre(final Integer idMembre, final String nomMembre,
                   final String prenomMembre,
                   final LocalDate dateInscriptionMembre) {
         this.idMembre = idMembre;
