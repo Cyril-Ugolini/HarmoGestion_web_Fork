@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ajouter CSS-->
+    <!-- Ajouter Bootstrap-->
+    <title>Index</title>
+  </head>
+  <body>
+    <h1>Liste des membres</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date d'inscription</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${#lists.isEmpty(listeMembres)}">
+        <td colspan=3>Aucune donnée n'est disponible</td>
+      </tr>
+      <tr th:each="membre: ${listMembres}">
+        <td><span th:text="${membre.nom}">Nom</span></td>
+        <td><span th:text="${membre.prenom}">Prénom</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
