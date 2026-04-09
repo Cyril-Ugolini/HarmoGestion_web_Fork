@@ -13,8 +13,6 @@
 
     <h1 th:text="#{titre.autrePage}"></h1>
     <h2><a th:href="@{/index}">Retour à l'index</a></h2>
-
-    <!-- Script-->
-    <script src="../static/node_modules/bootstrap/dist/js/bootstrap.bundle.js" data-th-href="@{/node_modules/bootstrap/dist/js/bootstrap.bundle.js}" defer></script>
+    <div th:replace="fragments/footer :: footer"></div>
   </body>
 </html>
