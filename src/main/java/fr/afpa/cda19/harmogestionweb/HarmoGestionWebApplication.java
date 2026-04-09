@@ -9,5 +9,4 @@ public class HarmoGestionWebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HarmoGestionWebApplication.class, args);
 	}
-
 }

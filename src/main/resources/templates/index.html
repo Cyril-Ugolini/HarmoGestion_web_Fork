@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" data-th-href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+    <title>Index</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <h1 th:text="#{titre.accueil}"></h1>
+    <h2>Liste des membres</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date d'inscription</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr th:if="${#lists.isEmpty(listeMembres)}">
+          <td colspan="3" th:text="#{donnee.absente}"></td>
+        </tr>
+        <tr th:each="membre : ${listeMembres}">
+          <td th:text="${membre?.nomMembre}">Nom</td>
+          <td th:text="${membre?.prenomMembre}">Prénom</td>
+          <td th:text="${membre?.dateInscriptionMembre}">Date</td>
+        </tr>
+      </tbody>
+    </table>
+    <br><h2><a th:href="@{/autrePageTest}">Aller à l'autre page</a></h2>
+    <div th:replace="fragments/footer :: footer"></div>
+  </body>
+</html>
