@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" data-th-href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
-    <title>Liste des membres</title>
+  <head th:replace="fragments/head :: head">
+    <title th:text="${titrePage}">HarmoGestion : Liste des membres</title>
   </head>
   <body>
     <header th:replace="fragments/header :: header"></header>
