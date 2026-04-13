@@ -65,6 +65,9 @@ public class Cours {
     private List<@Valid Membre> participants;
 
 
+    /**
+     * Comparator du cours par date.
+     */
     public static final Comparator<Cours> COMPARATOR_DATE =
             Comparator.comparing(Cours::getDateCours);
 }
