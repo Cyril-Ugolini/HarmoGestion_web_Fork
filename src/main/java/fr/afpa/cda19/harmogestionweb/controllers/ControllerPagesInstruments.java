@@ -135,6 +135,41 @@ public class ControllerPagesInstruments {
     }
 
     /**
+     * Méthode d'accès au formulaire de modification d'un instrument.
+     *
+     * @param id    L'identifiant de l'instrument à modifier
+     * @param model Modèle de la page.
+     * @return le nom de la vue à afficher
+     */
+    @GetMapping("/supprimerInstrument/{id}")
+    public String envoyerFormulaireSuppressionInstrument(
+            @PathVariable
+            final Integer id, final Model model) {
+        model.mergeAttributes(getParamsFormSuppression(id));
+        //TODO: recup instrument depuis l'API
+        model.addAttribute(NOM_MODEL_PARAM, new Instrument(id, "Ukulele"));
+        return NOM_FORM_VUE;
+    }
+
+    /**
+     * Méthode de suppression d'un instrument.
+     *
+     * @param id         L'identifiant de l'instrument
+     * @param instrument L'instrument à supprimer
+     * @return La redirection vers la pae d'accueil
+     */
+    @PostMapping("/supprimerInstrument/{id}")
+    public ModelAndView supprimerInstrument(
+            @PathVariable
+            final Integer id,
+            @ModelAttribute
+            final Instrument instrument) {
+        IO.println(instrument);
+        //TODO: envoyer instrument à l'API et traiter le retour
+        return new ModelAndView("redirect:/");
+    }
+
+    /**
      * Récupère les paramètres du formulaire d'ajout d'un instrument.
      *
      * @return les paramètres du formulaire d'ajout
@@ -163,5 +198,21 @@ public class ControllerPagesInstruments {
         paramsFormModif.put(TITRE_PAGE_PARAM,
                             "HarmoGestion : Modification d'un instrument");
         return paramsFormModif;
+    }
+
+    /**
+     * Récupère les paramètres du formulaire de suppression d'un instrument.
+     *
+     * @param id L'identifiant de l'instrument à supprimer
+     * @return les paramètres du formulaire de suppression
+     */
+    private Map<String, String> getParamsFormSuppression(final Integer id) {
+        HashMap<String, String> paramsFormSupp = new HashMap<>();
+        paramsFormSupp.put(ACTION_PARAM, "/supprimerInstrument/" + id);
+        paramsFormSupp.put(NOM_SUBMIT_PARAM, "Supprimer");
+        paramsFormSupp.put(TITRE_FORM_PARAM, "Supprimer un instrument");
+        paramsFormSupp.put(TITRE_PAGE_PARAM,
+                            "HarmoGestion : Suppression d'un instrument");
+        return paramsFormSupp;
     }
 }
