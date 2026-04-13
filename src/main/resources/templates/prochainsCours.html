@@ -1,14 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
+
   <head th:replace="fragments/head :: head">
-    <title th:text="${titrePage}">HarmoGestion : Prochains cours</title>
+    <title th:text="${titrePage}"></title>
   </head>
+
   <body>
     <header th:replace="fragments/header :: header"></header>
     <main class="container">
-      <h1 th:text="#{titre.titrePrerempli}">Titre</h1>
+      <!-- Titre principal -->
+      <h1>Prochains cours</h1>
+      <!-- Prochains cours -->
+      <article class="row">
+        <section th:each="cours : ${prochainsCours}" class="col">
+          <div class="card align-items-center" style="min-width: 24rem; max-width: 28rem">
+            <img th:src="@{/img/clock.svg}" alt="Horloge" id="clock" class="card-img-top" style="max-width: 8rem">
+            <div class="card-body">
+              <h2 th:text="'Cours de ' + ${cours.instrument.libelleInstrument}">Cours</h2>
+              <h3 th:text="'Date: ' + ${#temporals.format(cours.dateCours, 'dd/MM/yyyy - HH:mm')}">Date</h3>
+              <h3 th:text="'Durée: ' + ${cours.dureeCours} + 'min'">Durée</h3>
+              <h4 th:text="'Enseignant: ' + ${cours.enseignant.prenomMembre} + ' '
+               + ${cours.enseignant.nomMembre}">Enseignant</h4>
+              <h4 th:text="'Participants: ' + ${cours.participants.size()}">Participants</h4>
+              <ul>
+                <th:block th:each="participant : ${cours.participants}">
+                  <li th:text="${participant.prenomMembre} + ' ' + ${participant.nomMembre}">Participant</li>
+                </th:block>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </article>
     </main>
+
     <footer th:replace="fragments/footer :: footer"></footer>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
   </body>
+
 </html>
