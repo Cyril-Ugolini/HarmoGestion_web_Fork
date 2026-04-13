@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,10 +55,10 @@ public class ControllerPagesInstruments {
     private static final String NOM_FORM_VUE = "formulaireInstrument";
 
     /**
-     * Méthode d'accès à la page d'ajout d'instrument.
+     * Méthode d'accès au formulaire d'ajout d'un instrument.
      *
      * @param model Modèle de la page.
-     * @return URI de la page.
+     * @return le nom de la vue à afficher
      */
     @GetMapping("/ajouterInstrument")
     public String envoyerFormulaireAjoutInstrument(final Model model) {
@@ -66,6 +67,14 @@ public class ControllerPagesInstruments {
         return NOM_FORM_VUE;
     }
 
+    /**
+     * Méthode de validation et d'enregistrement du nouvel instrument.
+     *
+     * @param instrument L'instrument à enregistrer
+     * @param result     Le résultât de la validation de l'instrument
+     * @return La redirection vers la pae d'accueil ou renvoie le formulaire
+     * si une erreur a été détectée lors de la validation
+     */
     @PostMapping("/ajouterInstrument")
     public ModelAndView creerInstrument(
             @ModelAttribute
@@ -81,16 +90,33 @@ public class ControllerPagesInstruments {
         return new ModelAndView("redirect:/");
     }
 
+    /**
+     * Méthode d'accès au formulaire de modification d'un instrument.
+     *
+     * @param id    L'identifiant de l'instrument à modifier
+     * @param model Modèle de la page.
+     * @return le nom de la vue à afficher
+     */
     @GetMapping("/modifierInstrument/{id}")
     public String envoyerFormulaireModificationInstrument(
             @PathVariable
             final Integer id, final Model model) {
         model.mergeAttributes(getParamsFormModification(id));
         //TODO: recup instrument depuis l'API
-        model.addAttribute(NOM_MODEL_PARAM, new Instrument(id,"Ukulele"));
+        model.addAttribute(NOM_MODEL_PARAM, new Instrument(id, "Ukulele"));
         return NOM_FORM_VUE;
     }
 
+    /**
+     * Méthode de validation et d'enregistrement de la modification d'un
+     * instrument.
+     *
+     * @param id         L'identifiant de l'instrument
+     * @param instrument L'instrument à modifier
+     * @param result     Le résultât de la validation de l'instrument
+     * @return La redirection vers la pae d'accueil ou renvoie le formulaire
+     * si une erreur a été détectée lors de la validation
+     */
     @PostMapping("/modifierInstrument/{id}")
     public ModelAndView modifierInstrument(
             @PathVariable
@@ -108,6 +134,11 @@ public class ControllerPagesInstruments {
         return new ModelAndView("redirect:/");
     }
 
+    /**
+     * Récupère les paramètres du formulaire d'ajout d'un instrument.
+     *
+     * @return les paramètres du formulaire d'ajout
+     */
     private Map<String, String> getParamsFormAjout() {
         HashMap<String, String> paramsFormAjout = new HashMap<>();
         paramsFormAjout.put(ACTION_PARAM, "/ajouterInstrument");
@@ -118,6 +149,12 @@ public class ControllerPagesInstruments {
         return paramsFormAjout;
     }
 
+    /**
+     * Récupère les paramètres du formulaire de modification d'un instrument.
+     *
+     * @param id L'identifiant de l'instrument à modifier
+     * @return les paramètres du formulaire de modification
+     */
     private Map<String, String> getParamsFormModification(final Integer id) {
         HashMap<String, String> paramsFormModif = new HashMap<>();
         paramsFormModif.put(ACTION_PARAM, "/modifierInstrument/" + id);
