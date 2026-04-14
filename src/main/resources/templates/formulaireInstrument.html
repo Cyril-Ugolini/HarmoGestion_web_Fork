@@ -16,7 +16,8 @@
         </div>
         <input type="hidden" th:field="*{idInstrument}">
         <div>
-          <button type="submit" th:text="${nomSubmit}">Enregistrer</button>
+          <button th:if="${nomSubmit=='Supprimer'}" class="btn plain-danger" type="submit" th:text="${nomSubmit}">Enregistrer</button>
+          <button th:unless="${nomSubmit=='Supprimer'}" class="btn btn-submit" type="submit" th:text="${nomSubmit}">Enregistrer</button>
         </div>
       </form>
     </main>
