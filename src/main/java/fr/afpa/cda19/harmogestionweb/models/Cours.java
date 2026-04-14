@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.PropertySource;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -35,6 +36,7 @@ public class Cours {
      * Date du cours.
      */
     @NotNull(message = "Le cours doit avoir une date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime dateCours;
 
     /**
@@ -47,13 +49,13 @@ public class Cours {
     /**
      * Enseignant.
      */
-    @Valid
+    @NotNull(message = "Le cours doit avoir un enseignant")
     private Membre enseignant;
 
     /**
      * Instrument enseigné.
      */
-    @Valid
+    @NotNull(message = "Le cours doit avoir un instrument enseigné")
     private Instrument instrument;
 
     /**
@@ -62,7 +64,7 @@ public class Cours {
     @NotNull(message = "Le cours doit avoir des participants")
     @Size(min = 1, max = 15, message = "Le nombre de participants doit être "
                                        + "entre 1 et 15")
-    private List<@Valid Membre> participants;
+    private List<Membre> participants;
 
 
     /**

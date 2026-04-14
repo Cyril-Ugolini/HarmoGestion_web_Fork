@@ -50,7 +50,17 @@ public class CoursRepository {
 
     public Cours getCours(final int id) {
 
-        return new Cours();
+        ArrayList<Membre> participants = new ArrayList<>();
+        participants.add(new Membre(2, "Seiwert",
+                                    "Thomas", LocalDate.now()));
+        participants.add(new Membre(3, "Didier",
+                                    "Cédric", LocalDate.now()));
+
+        return new Cours(1, LocalDateTime.now().plusDays(2), (byte) 45,
+                         new Membre(1, "Hendrix",
+                                    "Jimmi", LocalDate.now()),
+                         new Instrument(1, "guitare"),
+                         participants);
     }
 
     public Cours createCours(final Cours cours) {

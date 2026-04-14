@@ -10,46 +10,53 @@
     <header th:replace="~{fragments/header :: header}"></header>
 
     <main class="container">
-      <h1 th:text="${titreFormulaire}">Ajouter</h1>
+      <h1 th:text="${titreFormulaire}">Enregistrer</h1>
       <form action="#" th:action="${action}" th:object="${cours}" id="form-cours" method="post">
+        <div class="alert alert-success" role="alert" th:text="${statut}" th:hidden="${statut == null}"></div>
         <div class="mb-3">
           <label class="form-label" for="date-cours">Date du cours</label>
           <input class="form-control" th:errorclass="is-invalid" id="date-cours" th:field="*{dateCours}"
-                 required type="datetime-local">
+                 required type="datetime-local" th:disabled="${nomSubmit == 'Supprimer'}">
           <div class="invalid-feedback" th:errors="*{dateCours}"></div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="duree-cours">Durée du cours (en min)</label>
           <input class="form-control" th:errorclass="is-invalid" id="duree-cours" th:field="*{dureeCours}"
-                 required type="number">
+                 required type="number" th:disabled="${nomSubmit == 'Supprimer'}">
           <div class="invalid-feedback" th:errors="*{dureeCours}"></div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="instrument-cours">Instrument enseigné</label>
-          <select class="form-select" th:errorclass="is-invalid" id="instrument-cours" th:field="*{instrument}"
-                  required>
-            <option selected disabled value="">--Choisir--</option>
-            <th:block th:each="intrument : ${instruments}">
-              <option th:text="${intrument.libelleInstrument}" th:value="${intrument.idInstrument}">Instrument</option>
-            </th:block>
+          <select class="form-select" th:errorclass="is-invalid" id="instrument-cours" th:field="*{instrument.idInstrument}"
+                  required th:disabled="${nomSubmit == 'Supprimer'}">
+            <option selected value="">--Choisir--</option>
+            <option th:each="ins : ${instruments}" th:value="${ins.idInstrument}" th:text="${ins.libelleInstrument}">
           </select>
-          <div class="invalid-feedback" th:errors="*{instrument}"></div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="enseignant-cours">Enseignant</label>
-          <select class="form-select" th:errorclass="is-invalid" id="enseignant-cours" th:field="*{enseignant}"
-                  required>
-            <option selected disabled value="">--Choisir--</option>
-            <th:block th:each="membre : ${membres}">
-              <option th:text="${membre.prenomMembre} + ' ' + ${membre.nomMembre}"
-                      th:value="${membre.idMembre}">Instrument</option>
-            </th:block>
+          <select class="form-select" th:errorclass="is-invalid" id="enseignant-cours" th:field="*{enseignant.idMembre}"
+                  required th:disabled="${nomSubmit == 'Supprimer'}">
+            <option selected value="">--Choisir--</option>
+            <option th:each="membre : ${membres}" th:value="${membre.idMembre}"
+                    th:text="${membre.prenomMembre} + ' ' + ${membre.nomMembre}">
           </select>
-          <div class="invalid-feedback" th:errors="*{instrument}"></div>
+        </div>
+        <div class="mb-3">
+          <div class="form-label fw-bold">Participants</div>
+          <div th:each="participant, i : ${membres}" class="form-check">
+            <input class="form-check-input"  id="participant-cours" th:errorclass="is-invalid"
+                   th:field="*{participants[__${i.index}__].idMembre}" th:value="${participant.idMembre}"
+                   type="checkbox" th:disabled="${nomSubmit == 'Supprimer'}">
+            <label class="form-check-label" for="participant-cours"
+                   th:text="${participant.prenomMembre} + ' ' + ${participant.nomMembre}">Participant</label>
+          </div>
+          <div class="invalid-feedback" th:errors="*{participants}"></div>
+          <div class="text-danger" th:text="${errParticipants}" th:hidden="${errParticipants == null}"></div>
         </div>
         <input type="hidden" th:field="*{idCours}">
         <div>
-          <button class="btn btn-outline-dark" type="submit" th:text="${nomSubmit}">Enregistrer</button>
+          <button class="btn btn-dark" type="submit" th:text="${nomSubmit}">Enregistrer</button>
         </div>
       </form>
     </main>
