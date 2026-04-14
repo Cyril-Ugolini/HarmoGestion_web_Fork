@@ -27,22 +27,41 @@ import java.util.Map;
  */
 @Slf4j
 @Controller
-public class ControllerPagesInstruments implements IController {
+public class ControllerPagesInstruments {
+    /**
+     * Paramètre 'action' du formulaire.
+     */
+    public static final String ACTION_PARAM = "action";
+
+    /**
+     * Nom du bouton submit du formulaire.
+     */
+    public static final String NOM_SUBMIT_PARAM = "nomSubmit";
+
+    /**
+     * Titre de la page.
+     */
+    public static final String TITRE_PAGE_PARAM = "titrePage";
+
+    /**
+     * Titre du formulaire.
+     */
+    public static final String TITRE_FORM_PARAM = "titreFormulaire";
 
     /**
      * Nom du modèle.
      */
-    private static final String NOM_MODEL_PARAM = "instrument";
+    public static final String NOM_MODEL_PARAM = "instrument";
 
     /**
      * Nom de la vue.
      */
-    private static final String NOM_FORM_VUE = "formulaireInstrument";
+    public static final String NOM_FORM_VUE = "formulaireInstrument";
 
     /**
      * URL de redirection.
      */
-    private static final String URL_REDIRECTION = "redirect:/listeInstruments";
+    public static final String URL_REDIRECTION = "redirect:/listeInstruments";
 
     /**
      * Service faisant le lien entre le contrôleur et le repository.
