@@ -1,18 +1,88 @@
 <!DOCTYPE html>
-<html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" data-th-href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          th:href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
+
+    <!-- Style perso -->
+    <link rel="stylesheet"
+          th:href="@{/style.css}">
+
     <title>Planifier une représentation</title>
   </head>
+
   <body>
+
     <div th:replace="fragments/header :: header"></div>
 
-    <h1 th:text="#{titre.titrePrerempli}"></h1>
+    <div class="container mt-4">
+
+      <h1 class="mb-4">Planifier une représentation</h1>
+
+      <!-- FORMULAIRE -->
+      <form th:action="@{/planifierRepresentation}"
+            th:object="${representationForm}"
+            method="post">
+
+        <!-- NOM -->
+        <div class="mb-3">
+          <label class="form-label">Nom de la représentation</label>
+          <input type="text" class="form-control"
+                 th:field="*{nomRepresentation}" required>
+        </div>
+
+        <!-- DATE -->
+        <div class="mb-3">
+          <label class="form-label">Date</label>
+          <input type="datetime-local" class="form-control"
+                 th:field="*{dateRepresentation}" required>
+        </div>
+
+        <!-- LIEU -->
+        <div class="mb-3">
+          <label class="form-label">Lieu</label>
+          <input type="text" class="form-control"
+                 th:field="*{lieuRepresentation}" required>
+        </div>
+
+        <!-- PARTICIPANTS -->
+        <div class="mb-3">
+          <label class="form-label">Participants</label>
+          <select class="form-select" multiple
+                  th:field="*{participantsIds}">
+            <option th:each="m : ${membres}"
+                    th:value="${m.idMembre}"
+                    th:text="${m.prenom + ' ' + m.nom}">
+            </option>
+          </select>
+          <small class="text-muted">Maintenir CTRL pour sélectionner plusieurs participants</small>
+        </div>
+
+        <!-- INSTRUMENTS -->
+        <div class="mb-3">
+          <label class="form-label">Instruments</label>
+          <select class="form-select" multiple
+                  th:field="*{instrumentsIds}">
+            <option th:each="i : ${instruments}"
+                    th:value="${i.idInstrument}"
+                    th:text="${i.libelleInstrument}">
+            </option>
+          </select>
+          <small class="text-muted">Maintenir CTRL pour sélectionner plusieurs instruments</small>
+        </div>
+
+        <!-- BOUTON -->
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+      </form>
+
+    </div>
 
     <div th:replace="fragments/footer :: footer"></div>
+
   </body>
 </html>
