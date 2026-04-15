@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html lang="Fr-fr" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css" data-th-href="@{/node_modules/bootstrap/dist/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
-    <title>Index</title>
+  <head th:replace="fragments/head :: head">
+    <title th:text="${titrePage}">HarmoGestion : Accueil</title>
   </head>
   <body>
-    <div th:replace="fragments/header :: header"></div>
+    <header th:replace="fragments/header :: header"></header>
+    <main class="container">
+      <!-- Membre-->
+      <section class="formulaire">
+        <h1 th:text="#{titre.membres}"></h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center">
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.listeMembres}"
+             th:href="@{/listeMembres}"></a>
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.ficheMembre}" th:href="@{ficheMembre}"></a>
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.inscriptionMembre}"
+             th:href="@{inscriptionMembre}"></a>
+        </div>
+      </section>
+      <br>
 
-    <h1 th:text="#{titre.accueil}"></h1>
-    <h2>Liste des membres</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Date d'inscription</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr th:if="${#lists.isEmpty(listeMembres)}">
-          <td colspan="3" th:text="#{donnee.absente}"></td>
-        </tr>
-        <tr th:each="membre : ${listeMembres}">
-          <td th:text="${membre?.nomMembre}">Nom</td>
-          <td th:text="${membre?.prenomMembre}">Prénom</td>
-          <td th:text="${membre?.dateInscriptionMembre}">Date</td>
-        </tr>
-      </tbody>
-    </table>
-    <br><h2><a th:href="@{/autrePageTest}">Aller à l'autre page</a></h2>
-    <div th:replace="fragments/footer :: footer"></div>
+      <!-- Cours-->
+      <section class="formulaire">
+        <h1 th:text="#{titre.cours}"></h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center">
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.prochainsCours}"
+             th:href="@{prochainsCours}"></a>
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.planifierCours}"
+             th:href="@{planifierCours}"></a>
+        </div>
+      </section>
+      <br>
+
+      <!-- Représentation-->
+      <section class="formulaire">
+        <h1 th:text="#{titre.representations}"></h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center">
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.prochainesRepresentations}"
+             th:href="@{prochainesRepresentations}"></a>
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.planifierRepresentation}"
+             th:href="@{planifierRepresentation}"></a>
+        </div>
+      </section>
+      <br>
+
+      <!-- Instrument-->
+      <section class="formulaire">
+        <h1 th:text="#{titre.instruments}"></h1>
+        <div class="d-flex flex-column flex-lg-row gap-3 justify-content-center">
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.ajouterInstrument}"
+             th:href="@{ajouterInstrument}"></a>
+          <a type="button" class="btn plain-primary btn-lg" th:text="#{titre.listeInstruments}"
+             th:href="@{listeInstruments}"></a>
+        </div>
+      </section>
+      <br>
+
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
   </body>
 </html>
