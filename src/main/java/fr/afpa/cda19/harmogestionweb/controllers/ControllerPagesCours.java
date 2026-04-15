@@ -44,6 +44,20 @@ public class ControllerPagesCours {
      */
     private final MembreService membreService;
 
+    private static final String ACTION = "action";
+    private static final String NOM_SUBMIT = "nomSubmit";
+    private static final String TITRE_FORM = "titreFormulaire";
+    private static final String TITRE_PAGE = "titrePage";
+    private static final String COURS = "cours";
+    private static final String INSTRUMENTS = "instruments";
+    private static final String MEMBRES = "membres";
+    private static final String STATUT = "statut";
+    private static final String GERER_COURS = "gererCours";
+    private static final String CREER_UN_COURS = "Créer un cours";
+    private static final String MODIFIER_UN_COURS = "Modifier un cours";
+    private static final String SUPPRIMER_UN_COURS = "Supprimer un cours";
+    private static final String MODIFIED = "modified";
+    private static final String MODIFIER = "modifier";
 
     /**
      * Constructeur du controller des pages des cours.
@@ -72,15 +86,15 @@ public class ControllerPagesCours {
         Iterable<Instrument> instruments = instrumentService.getInstruments();
         Iterable<Membre> membres = membreService.getMembres();
 
-        model.addAttribute("action", "/creerCours");
-        model.addAttribute("nomSubmit", "Créer");
-        model.addAttribute("titreFormulaire", "Créer un cours");
-        model.addAttribute("titrePage", "Créer un cours");
-        model.addAttribute("cours", new Cours());
-        model.addAttribute("instruments", instruments);
-        model.addAttribute("membres", membres);
+        model.addAttribute(ACTION, "/creerCours");
+        model.addAttribute(NOM_SUBMIT, "Créer");
+        model.addAttribute(TITRE_FORM, CREER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, CREER_UN_COURS);
+        model.addAttribute(COURS, new Cours());
+        model.addAttribute(INSTRUMENTS, instruments);
+        model.addAttribute(MEMBRES, membres);
 
-        return "gererCours";
+        return GERER_COURS;
     }
 
     /**
@@ -106,24 +120,24 @@ public class ControllerPagesCours {
             || cours.getInstrument().getIdInstrument() == null
             || cours.getParticipants().isEmpty()
             || cours.getParticipants().size() > 15) {
-            model.addAttribute("cours", cours);
+            model.addAttribute(COURS, cours);
             if (cours.getParticipants().isEmpty() ||
                 cours.getParticipants().size() > 15) {
                 model.addAttribute("errParticipants",
                                    "Le nombre de participants doit être entre 1 et 15");
             }
         } else {
-            model.addAttribute("cours", new Cours());
-            model.addAttribute("statut", "Création réussie");
+            model.addAttribute(COURS, new Cours());
+            model.addAttribute(STATUT, "Création réussie");
         }
-        model.addAttribute("action", "/creerCours");
-        model.addAttribute("nomSubmit", "Créer");
-        model.addAttribute("titreFormulaire", "Créer un cours");
-        model.addAttribute("titrePage", "Créer un cours");
-        model.addAttribute("instruments", instruments);
-        model.addAttribute("membres", membres);
+        model.addAttribute(ACTION, "/creerCours");
+        model.addAttribute(NOM_SUBMIT, "Créer");
+        model.addAttribute(TITRE_FORM, CREER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, CREER_UN_COURS);
+        model.addAttribute(INSTRUMENTS, instruments);
+        model.addAttribute(MEMBRES, membres);
 
-        return "gererCours";
+        return GERER_COURS;
     }
 
     /**
@@ -144,17 +158,17 @@ public class ControllerPagesCours {
         listeCours.sort(Cours.COMPARATOR_DATE);
 
         if (statut.isPresent()) {
-            if (statut.get().equals("modified")) {
-                model.addAttribute("statut", "Modification réussie");
+            if (statut.get().equals(MODIFIED)) {
+                model.addAttribute(STATUT, "Modification réussie");
             } else {
-                model.addAttribute("statut", "Suppression réussie");
+                model.addAttribute(STATUT, "Suppression réussie");
             }
         }
         model.addAttribute("listeCours", listeCours);
-        model.addAttribute("action", "/modifierCours");
-        model.addAttribute("nomSubmit", "Modifier");
-        model.addAttribute("titreFormulaire", "Modifier un cours");
-        model.addAttribute("titrePage", "Modifier un cours");
+        model.addAttribute(ACTION, "/modifierCours");
+        model.addAttribute(NOM_SUBMIT, MODIFIER);
+        model.addAttribute(TITRE_FORM, MODIFIER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, MODIFIER_UN_COURS);
 
         return "selectCours";
 
@@ -177,15 +191,15 @@ public class ControllerPagesCours {
         Iterable<Membre> membres = membreService.getMembres();
 
         Cours cours = coursService.getCours(id);
-        model.addAttribute("cours", cours);
-        model.addAttribute("action", "/modifierCours/" + id);
-        model.addAttribute("nomSubmit", "Modifier");
-        model.addAttribute("titreFormulaire", "Modifier un cours");
-        model.addAttribute("titrePage", "Modifier un cours");
-        model.addAttribute("instruments", instruments);
-        model.addAttribute("membres", membres);
+        model.addAttribute(COURS, cours);
+        model.addAttribute(ACTION, "/modifierCours/" + id);
+        model.addAttribute(NOM_SUBMIT, "Modifier");
+        model.addAttribute(TITRE_FORM, MODIFIER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, MODIFIER_UN_COURS);
+        model.addAttribute(INSTRUMENTS, instruments);
+        model.addAttribute(MEMBRES, membres);
 
-        return "gererCours";
+        return GERER_COURS;
     }
 
     /**
@@ -214,21 +228,21 @@ public class ControllerPagesCours {
             || cours.getInstrument().getIdInstrument() == null
             || cours.getParticipants().isEmpty()
             || cours.getParticipants().size() > 15) {
-            model.addAttribute("cours", cours);
-            model.addAttribute("action", "/modifierCours/" + id);
-            model.addAttribute("instruments", instruments);
-            model.addAttribute("membres", membres);
-            model.addAttribute("nomSubmit", "Modifier");
-            model.addAttribute("titreFormulaire", "Modifier un cours");
-            model.addAttribute("titrePage", "Modifier un cours");
+            model.addAttribute(COURS, cours);
+            model.addAttribute(ACTION, "/modifierCours/" + id);
+            model.addAttribute(INSTRUMENTS, instruments);
+            model.addAttribute(MEMBRES, membres);
+            model.addAttribute(NOM_SUBMIT, MODIFIER);
+            model.addAttribute(TITRE_FORM, MODIFIER_UN_COURS);
+            model.addAttribute(TITRE_PAGE, MODIFIER_UN_COURS);
             if (cours.getParticipants().isEmpty() ||
                 cours.getParticipants().size() > 15) {
                 model.addAttribute("errParticipants",
                                    "Le nombre de participants doit être entre 1 et 15");
             }
-            return new ModelAndView("gererCours");
+            return new ModelAndView(GERER_COURS);
         } else {
-            model.addAttribute("statut", "modified");
+            model.addAttribute(STATUT, MODIFIED);
             return new ModelAndView("redirect:/modifierCours", model);
         }
     }
@@ -251,17 +265,17 @@ public class ControllerPagesCours {
         listeCours.sort(Cours.COMPARATOR_DATE);
 
         if (statut.isPresent()) {
-            if (statut.get().equals("modified")) {
-                model.addAttribute("statut", "Modification réussie");
+            if (statut.get().equals(MODIFIED)) {
+                model.addAttribute(STATUT, "Modification réussie");
             } else {
-                model.addAttribute("statut", "Suppression réussie");
+                model.addAttribute(STATUT, "Suppression réussie");
             }
         }
         model.addAttribute("listeCours", listeCours);
-        model.addAttribute("action", "/supprimerCours");
-        model.addAttribute("nomSubmit", "Supprimer");
-        model.addAttribute("titreFormulaire", "Supprimer un cours");
-        model.addAttribute("titrePage", "Supprimer un cours");
+        model.addAttribute(ACTION, "/supprimerCours");
+        model.addAttribute(NOM_SUBMIT, "Supprimer");
+        model.addAttribute(TITRE_FORM, SUPPRIMER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, SUPPRIMER_UN_COURS);
 
         return "selectCours";
 
@@ -284,15 +298,15 @@ public class ControllerPagesCours {
         Iterable<Membre> membres = membreService.getMembres();
 
         Cours cours = coursService.getCours(id);
-        model.addAttribute("cours", cours);
-        model.addAttribute("action", "/supprimerCours/" + id);
-        model.addAttribute("nomSubmit", "Supprimer");
-        model.addAttribute("titreFormulaire", "Supprimer un cours");
-        model.addAttribute("titrePage", "Supprimer un cours");
-        model.addAttribute("instruments", instruments);
-        model.addAttribute("membres", membres);
+        model.addAttribute(COURS, cours);
+        model.addAttribute(ACTION, "/supprimerCours/" + id);
+        model.addAttribute(NOM_SUBMIT, "Supprimer");
+        model.addAttribute(TITRE_FORM, SUPPRIMER_UN_COURS);
+        model.addAttribute(TITRE_PAGE, SUPPRIMER_UN_COURS);
+        model.addAttribute(INSTRUMENTS, instruments);
+        model.addAttribute(MEMBRES, membres);
 
-        return "gererCours";
+        return GERER_COURS;
     }
 
     /**
@@ -308,7 +322,7 @@ public class ControllerPagesCours {
             final int id,
             ModelMap model) {
 
-        model.addAttribute("statut", "deleted");
+        model.addAttribute(STATUT, "deleted");
 
         return new ModelAndView("redirect:/supprimerCours", model);
     }
@@ -336,7 +350,7 @@ public class ControllerPagesCours {
             i++;
         }
         model.addAttribute("prochainsCours", prochainsCours);
-        model.addAttribute("titrePage", "Prochains Cours");
+        model.addAttribute(TITRE_PAGE, "Prochains Cours");
 
         return "prochainsCours";
     }
