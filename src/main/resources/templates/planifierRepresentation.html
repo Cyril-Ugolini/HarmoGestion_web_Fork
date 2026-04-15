@@ -4,11 +4,71 @@
     <title th:text="${titrePage}">HarmoGestion : Planifier une représentation</title>
   </head>
   <body>
-    <header th:replace="fragments/header :: header"></header>
-    <main class="container">
-      <h1 th:text="#{titre.titrePrerempli}">Titre</h1>
-    </main>
-    <footer th:replace="fragments/footer :: footer"></footer>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container mt-4">
+
+      <h1 class="mb-4">Planifier une représentation</h1>
+
+      <!-- FORMULAIRE -->
+      <form th:action="@{/planifierRepresentation}"
+            th:object="${representationForm}"
+            method="post">
+
+        <!-- NOM -->
+        <div class="mb-3">
+          <label class="form-label">Nom de la représentation</label>
+          <input type="text" class="form-control"
+                 th:field="*{nomRepresentation}" required>
+        </div>
+
+        <!-- DATE -->
+        <div class="mb-3">
+          <label class="form-label">Date</label>
+          <input type="datetime-local" class="form-control"
+                 th:field="*{dateRepresentation}" required>
+        </div>
+
+        <!-- LIEU -->
+        <div class="mb-3">
+          <label class="form-label">Lieu</label>
+          <input type="text" class="form-control"
+                 th:field="*{lieuRepresentation}" required>
+        </div>
+
+        <!-- PARTICIPANTS -->
+        <div class="mb-3">
+          <label class="form-label">Participants</label>
+          <select class="form-select" multiple
+                  th:field="*{participantsIds}">
+            <option th:each="m : ${membres}"
+                    th:value="${m.idMembre}"
+                    th:text="${m.prenom + ' ' + m.nom}">
+            </option>
+          </select>
+          <small class="text-muted">Maintenir CTRL pour sélectionner plusieurs participants</small>
+        </div>
+
+        <!-- INSTRUMENTS -->
+        <div class="mb-3">
+          <label class="form-label">Instruments</label>
+          <select class="form-select" multiple
+                  th:field="*{instrumentsIds}">
+            <option th:each="i : ${instruments}"
+                    th:value="${i.idInstrument}"
+                    th:text="${i.libelleInstrument}">
+            </option>
+          </select>
+          <small class="text-muted">Maintenir CTRL pour sélectionner plusieurs instruments</small>
+        </div>
+
+        <!-- BOUTON -->
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+      </form>
+
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
   </body>
 </html>
