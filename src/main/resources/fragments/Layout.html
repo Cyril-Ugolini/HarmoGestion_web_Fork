@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} ?: 'HarmoGestion'">HarmoGestion</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <span class="logo-harmo">eHarmo</span>
+            <span class="logo-gestion">Gestion</span>
+        </div>
+        <button id="menu-toggle">&#9776;</button>
+    </div>
+</header>
+
+<!-- MENU LATERAL -->
+<nav id="side-menu" class="side-menu closed">
+    <div class="menu-header">
+        <div class="logo">
+            <span class="logo-harmo">eHarmo</span>
+            <span class="logo-gestion">Gestion</span>
+        </div>
+        <button id="menu-close">&#x2715;</button>
+    </div>
+    <p class="menu-subtitle">HarmoGestion</p>
+    <p class="menu-subtitle-small">Gestion école de musique</p>
+    <ul>
+        <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
+        <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
+        <li><a th:href="@{/membres}">&#8618; Liste des membres</a></li>
+        <li><a th:href="@{/membres/inscription}">&#8618; Inscription membre</a></li>
+        <li><a th:href="@{/membres/connexion}">&#8618; Se connecter</a></li>
+        <li><a th:href="@{/membres/fiche}">&#8618; Voir fiche membre</a></li>
+        <li><a th:href="@{/instruments/ajouter}">&#8618; Ajouter un instrument</a></li>
+        <li><a th:href="@{/cours/prevoir}">&#8618; Prévoir un cours</a></li>
+        <li><a th:href="@{/representations/prevoir}">&#8618; Prévoir une représentation</a></li>
+        <li><a th:href="@{/mentions-legales}">&#8618; Mentions Légales</a></li>
+        <li><a th:href="@{/accessibilite}">&#8618; Accessibilité</a></li>
+        <li><a th:href="@{/rgpd}">&#8618; RGPD</a></li>
+    </ul>
+</nav>
+<div id="overlay" class="overlay"></div>
+
+<!-- CONTENU PRINCIPAL -->
+<main th:fragment="content">
+    <div th:replace="${content}"></div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>HarmoGestion</strong></p>
+    <p><a th:href="@{/mentions-legales}">Mentions légales</a></p>
+    <p>Accessibilité : Partiellement conforme</p>
+</footer>
+
+<script th:src="@{/js/menu.js}"></script>
+</body>
+</html>
