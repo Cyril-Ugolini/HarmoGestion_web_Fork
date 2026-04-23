@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${representation.nomRepresentation} + ' - HarmoGestion'">Représentation</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <span class="logo-harmo">eHarmo</span>
+            <span class="logo-gestion">Gestion</span>
+        </div>
+        <button id="menu-toggle">&#9776;</button>
+    </div>
+</header>
+
+<nav id="side-menu" class="side-menu closed">
+    <div class="menu-header">
+        <div class="logo">
+            <span class="logo-harmo">eHarmo</span>
+            <span class="logo-gestion">Gestion</span>
+        </div>
+        <button id="menu-close">&#x2715;</button>
+    </div>
+    <p class="menu-subtitle">HarmoGestion</p>
+    <p class="menu-subtitle-small">Gestion école de musique</p>
+    <ul>
+        <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
+        <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
+        <li><a th:href="@{/membres}">&#8618; Liste des membres</a></li>
+        <li><a th:href="@{/membres/inscription}">&#8618; Inscription membre</a></li>
+        <li><a th:href="@{/instruments/ajouter}">&#8618; Ajouter un instrument</a></li>
+        <li><a th:href="@{/cours/prevoir}">&#8618; Prévoir un cours</a></li>
+        <li><a th:href="@{/representations/prevoir}">&#8618; Prévoir une représentation</a></li>
+        <li><a th:href="@{/mentions-legales}">&#8618; Mentions Légales</a></li>
+        <li><a th:href="@{/accessibilite}">&#8618; Accessibilité</a></li>
+        <li><a th:href="@{/rgpd}">&#8618; RGPD</a></li>
+    </ul>
+</nav>
+<div id="overlay" class="overlay"></div>
+
+<main>
+    <div class="page-header">
+        <h1>HarmoGestion</h1>
+        <p class="subtitle">Gestion école de musique</p>
+        <p class="breadcrumb">
+            <a th:href="@{/}">Accueil</a> &gt;
+            <a th:href="@{/representations}">Représentations</a> &gt;
+            <span th:text="${representation.nomRepresentation}">Représentation</span>
+        </p>
+    </div>
+
+    <section class="detail-card">
+        <div class="detail-icon">&#127926;</div>
+        <h2 th:text="${representation.nomRepresentation}">Nom</h2>
+        <p th:text="${representation.dateRepresentation}">Date</p>
+        <p th:text="${representation.lieuRepresentation}">Lieu</p>
+
+        <h3>Instruments</h3>
+        <ul>
+            <li th:each="instrument : ${representation.listeInstruments}"
+                th:text="${instrument.libelleInstrument}">Instrument</li>
+        </ul>
+
+        <h3>Membres participants</h3>
+        <ul>
+            <li th:each="membre : ${representation.listeMembres}"
+                th:text="${membre.prenomMembre} + ' ' + ${membre.nomMembre}">Membre</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p><strong>HarmoGestion</strong></p>
+    <p><a th:href="@{/mentions-legales}">Mentions légales</a></p>
+    <p>Accessibilité : Partiellement conforme</p>
+</footer>
+
+<script th:src="@{/menu.js}"></script>
+</body>
+</html>
