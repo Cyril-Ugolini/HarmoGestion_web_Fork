@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} ?: 'HarmoGestion'">HarmoGestion</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
+        </div>
+
+        <nav class="desktop-nav">
+            <ul>
+                <li><a th:href="@{/}">Accueil</a></li>
+                <li><a th:href="@{/representations}">Représentations</a></li>
+                <li><a th:href="@{/cours}">Cours</a></li>
+                <li><a th:href="@{/membres}">Membres</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div class="burger-wrapper">
+                <button id="menu-toggle">&#9776;</button>
+
+                <!-- DROPDOWN DESKTOP -->
+                <nav id="dropdown-menu" class="dropdown-menu closed">
+                    <ul>
+                        <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
+                        <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
+                        <li><a th:href="@{/membres}">&#8618; Liste des membres</a></li>
+                        <li><a th:href="@{/membres/inscription}">&#8618; Inscription membre</a></li>
+                        <li><a th:href="@{/instruments/ajouter}">&#8618; Ajouter un instrument</a></li>
+                        <li><a th:href="@{/cours/prevoir}">&#8618; Prévoir un cours</a></li>
+                        <li><a th:href="@{/representations/prevoir}">&#8618; Prévoir une représentation</a></li>
+                        <li><a th:href="@{/mentions-legales}">&#8618; Mentions Légales</a></li>
+                        <li><a th:href="@{/accessibilite}">&#8618; Accessibilité</a></li>
+                        <li><a th:href="@{/rgpd}">&#8618; RGPD</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<!-- MENU LATERAL MOBILE -->
+<nav id="side-menu" class="side-menu closed">
+    <div class="menu-header">
+
+        <!-- LOGO MOBILE -->
+        <div class="logo">
+            <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
+        </div>
+
+        <button id="menu-close">&#x2715;</button>
+    </div>
+
+    <p class="menu-subtitle">HarmoGestion</p>
+    <p class="menu-subtitle-small">Gestion école de musique</p>
+
+    <ul>
+        <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
+        <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
+        <li><a th:href="@{/membres}">&#8618; Liste des membres</a></li>
+        <li><a th:href="@{/membres/inscription}">&#8618; Inscription membre</a></li>
+        <li><a th:href="@{/instruments/ajouter}">&#8618; Ajouter un instrument</a></li>
+        <li><a th:href="@{/cours/prevoir}">&#8618; Prévoir un cours</a></li>
+        <li><a th:href="@{/representations/prevoir}">&#8618; Prévoir une représentation</a></li>
+        <li><a th:href="@{/mentions-legales}">&#8618; Mentions Légales</a></li>
+        <li><a th:href="@{/accessibilite}">&#8618; Accessibilité</a></li>
+        <li><a th:href="@{/rgpd}">&#8618; RGPD</a></li>
+    </ul>
+</nav>
+
+<div id="overlay" class="overlay"></div>
+
+<!-- LAYOUT PRINCIPAL -->
+<div class="page-wrapper">
+
+    <!-- ASIDE DESKTOP -->
+    <aside class="desktop-aside">
+
+        <!-- LOGO ASIDE (optionnel mais cohérent) -->
+        <div class="logo aside-logo">
+            <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
+        </div>
+
+        <p class="menu-subtitle">HarmoGestion</p>
+        <p class="menu-subtitle-small">Gestion école de musique</p>
+
+        <ul>
+            <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
+            <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
+            <li><a th:href="@{/membres}">&#8618; Liste des membres</a></li>
+            <li><a th:href="@{/membres/inscription}">&#8618; Inscription membre</a></li>
+            <li><a th:href="@{/instruments/ajouter}">&#8618; Ajouter un instrument</a></li>
+            <li><a th:href="@{/cours/prevoir}">&#8618; Prévoir un cours</a></li>
+            <li><a th:href="@{/representations/prevoir}">&#8618; Prévoir une représentation</a></li>
+            <li><a th:href="@{/mentions-legales}">&#8618; Mentions Légales</a></li>
+            <li><a th:href="@{/accessibilite}">&#8618; Accessibilité</a></li>
+            <li><a th:href="@{/rgpd}">&#8618; RGPD</a></li>
+        </ul>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main th:fragment="content">
+        <div th:replace="${content}"></div>
+    </main>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <p><strong>HarmoGestion</strong></p>
+        <p><a th:href="@{/mentions-legales}">Mentions légales</a></p>
+        <p>Accessibilité : Partiellement conforme</p>
+    </div>
+</footer>
+
+<script th:src="@{/menu.js}"></script>
+</body>
+</html>

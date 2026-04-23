@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Modèle représentant un membre.
@@ -22,4 +24,9 @@ public class Membre {
     private String nomMembre;
     private String prenomMembre;
     private LocalDate dateInscriptionMembre;
+
+    /**
+     * Liste des instruments pratiqués par le membre.
+     */
+    private List<Instrument> instrumentsPratiques = new ArrayList<>();
 }

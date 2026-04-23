@@ -1,3 +1,6 @@
+/* =========================================================
+   RESET
+========================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,78 +9,77 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #e8f4f8;
     color: #333;
+    font-size: 16px;
 }
 
-/* HEADER */
+/* =========================================================
+   HEADER
+========================================================= */
 header {
     background-color: #00bcd4;
-    padding: 12px 16px;
+    padding: 0.75rem 1.5rem;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.2);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 75rem;
+    margin: 0 auto;
 }
 
+/* LOGO */
 .logo {
     display: flex;
-    flex-direction: column;
-    line-height: 1.1;
+    align-items: center;
 }
 
-.logo-harmo {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: white;
+.logo-img {
+    height: 3rem;
+    width: auto;
+    display: block;
 }
 
-.logo-gestion {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #ff4081;
-}
-
+/* BURGER */
 #menu-toggle {
     background: none;
     border: none;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: white;
     cursor: pointer;
 }
 
-/* MENU LATERAL */
+/* =========================================================
+   SIDE MENU
+========================================================= */
 .side-menu {
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 18.75rem;
     height: 100%;
     background-color: white;
     z-index: 200;
-    padding: 16px;
+    padding: 1rem;
     transition: transform 0.3s ease;
     overflow-y: auto;
+    box-shadow: 0.125rem 0 0.5rem rgba(0,0,0,0.15);
 }
 
 .side-menu.closed {
     transform: translateX(-100%);
 }
 
-.side-menu.open {
-    transform: translateX(0);
-}
-
 .menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
 }
 
 #menu-close {
@@ -91,18 +93,18 @@ header {
 .menu-subtitle {
     font-weight: bold;
     color: #00bcd4;
-    margin-top: 8px;
+    margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
 .menu-subtitle-small {
     font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 12px;
+    color: #ff4081;
+    margin-bottom: 0.75rem;
 }
 
 .side-menu ul {
     list-style: none;
-    padding: 0;
 }
 
 .side-menu ul li {
@@ -111,7 +113,7 @@ header {
 
 .side-menu ul li a {
     display: block;
-    padding: 10px 4px;
+    padding: 0.625rem 0.25rem;
     text-decoration: none;
     color: #333;
     font-size: 0.9rem;
@@ -121,7 +123,9 @@ header {
     color: #00bcd4;
 }
 
-/* OVERLAY */
+/* =========================================================
+   OVERLAY
+========================================================= */
 .overlay {
     display: none;
     position: fixed;
@@ -135,37 +139,55 @@ header {
     display: block;
 }
 
-/* MAIN */
+/* =========================================================
+   MAIN
+========================================================= */
 main {
-    padding: 16px;
-    max-width: 480px;
+    padding: 1.5rem;
+    max-width: 75rem;
     margin: 0 auto;
 }
 
+/* PAGE HEADER */
 .page-header {
-    margin-bottom: 16px;
+    margin-bottom: 1.5rem;
 }
 
 .page-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
 .page-header .subtitle {
     color: #ff4081;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
-/* CARROUSEL */
+/* BREADCRUMB */
+.breadcrumb {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+}
+
+.breadcrumb a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
 .carousel-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: white;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
+    max-width: 37.5rem;
 }
 
 .carousel-btn {
@@ -179,44 +201,150 @@ main {
 .carousel-card {
     text-align: center;
     flex: 1;
-    padding: 0 12px;
+    padding: 0 0.75rem;
 }
 
 .card-icon {
     font-size: 2rem;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 .carousel-card h2 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-bottom: 4px;
 }
 
 .carousel-card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* =========================================================
+   LIST
+========================================================= */
+.list-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
+}
+
+.list-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.list-card:hover {
+    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.12);
+}
+
+.card-info h2 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-info p {
     font-size: 0.85rem;
     color: #666;
 }
 
-.btn-detail {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px 16px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #333;
-    font-size: 0.85rem;
+/* =========================================================
+   DETAIL
+========================================================= */
+.detail-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+    max-width: 43.75rem;
 }
 
-/* FOOTER */
+.detail-card h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.detail-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.detail-card h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1.25rem;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+.form-section {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+    max-width: 37.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.form-input:focus {
+    border-color: #00bcd4;
+    background-color: white;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #0097a7;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
 footer {
     background-color: #00bcd4;
-    padding: 16px;
+    padding: 1.5rem;
     text-align: left;
     color: white;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+footer p {
+    margin-bottom: 0.25rem;
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 footer a {
@@ -224,14 +352,85 @@ footer a {
     text-decoration: none;
 }
 
-/* BREADCRUMB */
-.breadcrumb {
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 12px;
+footer a:hover {
+    text-decoration: underline;
 }
 
-.breadcrumb a {
-    color: #00bcd4;
-    text-decoration: none;
+/* =========================================================
+   ERROR
+========================================================= */
+.error-card {
+    text-align: center;
+    padding: 3.75rem;
+    max-width: 37.5rem;
+}
+
+.error-card h2 {
+    color: #e74c3c;
+}
+
+/* =========================================================
+   RESPONSIVE — petits écrans (480px)
+========================================================= */
+@media (max-width: 48rem) {
+    main {
+        padding: 1rem;
+    }
+
+    .list-section {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-card,
+    .form-section {
+        max-width: 100%;
+        padding: 1.25rem;
+    }
+
+    .carousel-section {
+        max-width: 100%;
+    }
+
+    .error-card {
+        max-width: 100%;
+        padding: 2.5rem 1rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — écrans moyens (600px)
+========================================================= */
+@media (max-width: 600px) {
+    .logo-img { height: 2.6rem; }
+    .list-card { padding: 0.8rem; }
+    .detail-card, .form-section { padding: 1.5rem; }
+}
+
+/* =========================================================
+   RESPONSIVE — tablettes verticales (768px)
+========================================================= */
+@media (max-width: 768px) {
+    .list-section { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   RESPONSIVE — tablettes horizontales / petits laptops (1024px)
+========================================================= */
+@media (max-width: 1024px) {
+    .header-content,
+    main,
+    footer p {
+        max-width: 60rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — grands écrans (1200px)
+========================================================= */
+@media (max-width: 1200px) {
+    .header-content,
+    main,
+    footer p {
+        max-width: 70rem;
+    }
 }
