@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub'       // ID du credential Docker Hub dans Jenkins
+        DOCKERHUB_CREDENTIALS = 'dockerhub'
         DOCKER_IMAGE = 'cyril54000/harmogestion-web'
     }
 
@@ -18,14 +18,14 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                    bat "docker build -t %DOCKER_IMAGE%:latest ."
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
                         usernameVariable: 'DOCKER_USER',
                         passwordVariable: 'DOCKER_PASS')]) {
 
-                        sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                        bat "echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin"
                     }
                 }
             }
@@ -45,13 +45,13 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                sh "docker push ${DOCKER_IMAGE}:latest"
+                bat "docker push %DOCKER_IMAGE%:latest"
             }
         }
 
         stage('Deploy') {
             steps {
-                sh '''
+                bat '''
                 docker stop harmoweb || true
                 docker rm harmoweb || true
                 docker run -d --name harmoweb -p 8080:8080 cyril54000/harmogestion-web:latest
