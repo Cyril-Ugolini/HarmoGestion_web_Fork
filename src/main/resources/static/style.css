@@ -1,0 +1,697 @@
+/* =========================================================
+   RESET
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   BASE — MOBILE FIRST
+========================================================= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f4f8;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+header {
+    background-color: #00bcd4;
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-harmo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.logo-gestion {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+/* NAV DESKTOP — cachée sur mobile */
+.desktop-nav {
+    display: none;
+}
+
+.desktop-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.desktop-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.desktop-nav ul li a:hover {
+    color: #ff4081;
+}
+
+/* BURGER ET DROPDOWN */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.burger-wrapper {
+    position: relative;
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    width: 16rem;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
+    padding: 0.5rem;
+    z-index: 300;
+}
+
+.dropdown-menu.closed {
+    display: none;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    border-bottom: 0.0625rem solid #eee;
+}
+
+.dropdown-menu ul li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu ul li a {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.dropdown-menu ul li a:hover {
+    color: #00bcd4;
+}
+
+/* =========================================================
+   MENU LATERAL — MOBILE UNIQUEMENT
+========================================================= */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 18.75rem;
+    height: 100%;
+    background-color: white;
+    z-index: 200;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 0.125rem 0 0.5rem rgba(0,0,0,0.15);
+}
+
+.side-menu.closed {
+    transform: translateX(-100%);
+}
+
+.side-menu.open {
+    transform: translateX(0);
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+#menu-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-subtitle {
+    font-weight: bold;
+    color: #00bcd4;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.menu-subtitle-small {
+    font-size: 0.85rem;
+    color: #ff4081;
+    margin-bottom: 0.75rem;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu ul li {
+    border-bottom: 0.0625rem solid #eee;
+}
+
+.side-menu ul li a {
+    display: block;
+    padding: 0.625rem 0.25rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.side-menu ul li a:hover {
+    color: #00bcd4;
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 150;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+========================================================= */
+.page-wrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+/* ASIDE — caché sur mobile */
+.desktop-aside {
+    display: none;
+}
+
+/* MAIN */
+main {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+.page-header {
+    margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.page-header .subtitle {
+    color: #ff4081;
+    font-size: 0.9rem;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.breadcrumb a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+.carousel-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
+}
+
+.carousel-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #00bcd4;
+    cursor: pointer;
+}
+
+.carousel-card {
+    text-align: center;
+    flex: 1;
+    padding: 0 0.75rem;
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.carousel-card h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.carousel-card p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* =========================================================
+   LISTE
+========================================================= */
+.list-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.list-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.list-card:hover {
+    box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.12);
+}
+
+.list-card .card-icon {
+    font-size: 1.8rem;
+    min-width: 2.5rem;
+    text-align: center;
+}
+
+.card-info {
+    flex: 1;
+}
+
+.card-info h2 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.card-info p {
+    font-size: 0.82rem;
+    color: #666;
+}
+
+/* =========================================================
+   DETAIL
+========================================================= */
+.detail-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+}
+
+.detail-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.detail-card h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.detail-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.4rem;
+}
+
+.detail-card h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.detail-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-card ul li {
+    font-size: 0.9rem;
+    color: #555;
+    padding: 0.4rem 0;
+    border-bottom: 0.0625rem solid #eee;
+}
+
+/* =========================================================
+   FORMULAIRE
+========================================================= */
+.form-section {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.6rem 0.875rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    background-color: #f9f9f9;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #00bcd4;
+    background-color: white;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0097a7;
+}
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+.btn-detail {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    background-color: #00bcd4;
+    border: none;
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: white;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-detail:hover {
+    background-color: #0097a7;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    background-color: #00bcd4;
+    padding: 1.25rem 1rem;
+    color: white;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    width: 100%;
+}
+
+.footer-content p {
+    margin-bottom: 0.2rem;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   ERREUR
+========================================================= */
+.error-card {
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+.error-card .detail-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+}
+
+.error-card h2 {
+    color: #e74c3c;
+    margin-bottom: 0.75rem;
+}
+
+/* =========================================================
+   RESPONSIVE — tablettes (min 37.5rem / 600px)
+========================================================= */
+@media (min-width: 37.5rem) {
+    .header-content {
+        padding: 0 0.5rem;
+    }
+
+    .logo-harmo,
+    .logo-gestion {
+        font-size: 1.3rem;
+    }
+
+    .list-section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .detail-card {
+        padding: 1.5rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — tablettes horizontales (min 48rem / 768px)
+========================================================= */
+@media (min-width: 48rem) {
+    header {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .desktop-nav {
+        display: flex;
+    }
+
+    #side-menu {
+        display: none !important;
+    }
+
+    .page-wrapper {
+        padding: 1.5rem;
+        max-width: 75rem;
+        margin: 0 auto;
+    }
+
+    .desktop-aside {
+        display: block;
+        width: 14rem;
+        flex-shrink: 0;
+        background: white;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.08);
+        height: fit-content;
+        position: sticky;
+        top: 5rem;
+    }
+
+    .desktop-aside ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 0.5rem;
+    }
+
+    .desktop-aside ul li {
+        border-bottom: 0.0625rem solid #eee;
+    }
+
+    .desktop-aside ul li a {
+        display: block;
+        padding: 0.6rem 0.25rem;
+        text-decoration: none;
+        color: #333;
+        font-size: 0.82rem;
+    }
+
+    .desktop-aside ul li a:hover {
+        color: #00bcd4;
+    }
+
+    .list-section {
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    }
+
+    .detail-card {
+        padding: 2rem;
+        max-width: 43.75rem;
+    }
+
+    .form-section {
+        padding: 2rem;
+        max-width: 37.5rem;
+    }
+
+    .carousel-section {
+        max-width: 37.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .footer-content {
+        max-width: 75rem;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — petits laptops (min 64rem / 1024px)
+========================================================= */
+@media (min-width: 64rem) {
+    .desktop-aside {
+        width: 16rem;
+    }
+
+    .logo-harmo,
+    .logo-gestion {
+        font-size: 1.4rem;
+    }
+
+    .list-section {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — grands écrans (min 75rem / 1200px)
+========================================================= */
+@media (min-width: 75rem) {
+    .page-wrapper {
+        padding: 2rem 1.5rem;
+    }
+
+    .desktop-aside {
+        width: 18rem;
+    }
+
+    footer {
+        padding: 1.5rem 2rem;
+    }
+}
