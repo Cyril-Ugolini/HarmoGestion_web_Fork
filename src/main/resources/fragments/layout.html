@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title} ?: 'HarmoGestion'">HarmoGestion</title>
+    <title>HarmoGestion</title>
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
@@ -11,12 +11,11 @@
 <!-- HEADER -->
 <header>
     <div class="header-content">
-
-        <!-- LOGO -->
         <div class="logo">
             <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
         </div>
 
+        <!-- NAV DESKTOP -->
         <nav class="desktop-nav">
             <ul>
                 <li><a th:href="@{/}">Accueil</a></li>
@@ -26,10 +25,10 @@
             </ul>
         </nav>
 
+        <!-- BURGER -->
         <div class="header-right">
             <div class="burger-wrapper">
                 <button id="menu-toggle">&#9776;</button>
-
                 <!-- DROPDOWN DESKTOP -->
                 <nav id="dropdown-menu" class="dropdown-menu closed">
                     <ul>
@@ -47,25 +46,19 @@
                 </nav>
             </div>
         </div>
-
     </div>
 </header>
 
-<!-- MENU LATERAL MOBILE -->
+<!-- MENU MOBILE -->
 <nav id="side-menu" class="side-menu closed">
     <div class="menu-header">
-
-        <!-- LOGO MOBILE -->
         <div class="logo">
             <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
         </div>
-
         <button id="menu-close">&#x2715;</button>
     </div>
-
     <p class="menu-subtitle">HarmoGestion</p>
     <p class="menu-subtitle-small">Gestion école de musique</p>
-
     <ul>
         <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
         <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
@@ -82,20 +75,13 @@
 
 <div id="overlay" class="overlay"></div>
 
-<!-- LAYOUT PRINCIPAL -->
+<!-- LAYOUT -->
 <div class="page-wrapper">
 
     <!-- ASIDE DESKTOP -->
     <aside class="desktop-aside">
-
-        <!-- LOGO ASIDE (optionnel mais cohérent) -->
-        <div class="logo aside-logo">
-            <img th:src="@{/img/LogoComplet_Blanc.png}" alt="Logo HarmoGestion" class="logo-img">
-        </div>
-
-        <p class="menu-subtitle">HarmoGestion</p>
+        <p class="menu-subtitle">Menu</p>
         <p class="menu-subtitle-small">Gestion école de musique</p>
-
         <ul>
             <li><a th:href="@{/}">&#8618; Prochaines Représentations</a></li>
             <li><a th:href="@{/cours}">&#8618; Prochains Cours</a></li>
@@ -110,9 +96,37 @@
         </ul>
     </aside>
 
-    <!-- CONTENU PRINCIPAL -->
-    <main th:fragment="content">
-        <div th:replace="${content}"></div>
+    <!-- CONTENU -->
+    <main>
+        <div class="page-header">
+            <h1>HarmoGestion</h1>
+            <p class="subtitle">Gestion école de musique</p>
+        </div>
+
+        <!-- CARROUSEL COURS -->
+        <section class="carousel-section">
+            <button class="carousel-btn left">&#8249;</button>
+            <div class="carousel-card">
+                <div class="card-icon">&#128336;</div>
+                <h2 th:text="${prochainCours?.instrument?.libelleInstrument} ?: 'Cours de piano'">Cours de piano</h2>
+                <p th:text="${prochainCours?.dateCours} ?: '12 avril 2026 - 15h'">12 avril 2026 - 15h</p>
+                <p th:text="${prochainCours?.dureeCours} ?: '60 minutes'">60 minutes</p>
+            </div>
+            <button class="carousel-btn right">&#8250;</button>
+        </section>
+
+        <!-- CARROUSEL REPRESENTATIONS -->
+        <section class="carousel-section">
+            <button class="carousel-btn left">&#8249;</button>
+            <div class="carousel-card">
+                <div class="card-icon">&#127926;</div>
+                <h2 th:text="${prochaineRepresentation?.nomRepresentation} ?: 'Festival'">Festival</h2>
+                <p th:text="${prochaineRepresentation?.lieuRepresentation} ?: 'Salle des fêtes'">Salle des fêtes</p>
+                <p th:text="${prochaineRepresentation?.dateRepresentation} ?: '12 avril 2026'">12 avril 2026</p>
+                <a th:href="@{/representations}" class="btn-detail">Voir</a>
+            </div>
+            <button class="carousel-btn right">&#8250;</button>
+        </section>
     </main>
 
 </div>
