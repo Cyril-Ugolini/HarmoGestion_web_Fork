@@ -44,7 +44,7 @@ pipeline {
             steps {
                 bat "docker stop harmoweb || echo ok"
                 bat "docker rm harmoweb || echo ok"
-                bat "docker run -d --name harmoweb -p 8080:8080 cyril54000/harmogestion-web:latest"
+                bat "docker run -d --name harmoweb -p 8081:8081 cyril54000/harmogestion-web:latest"
             }
         }
     }
