@@ -42,10 +42,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat "docker stop harmoweb || echo ok"
-                bat "docker rm harmoweb || echo ok"
-                bat "docker run -d --name harmoweb -p 8081:8081 cyril54000/harmogestion-web:latest"
+                script {
+                    bat(script: "docker stop harmoweb", returnStatus: true)
+                    bat(script: "docker rm harmoweb", returnStatus: true)
+                    bat "docker run -d --name harmoweb -p 8081:8081 cyril54000/harmogestion-web:latest"
+                }
             }
         }
-    }
+    }  
 }
