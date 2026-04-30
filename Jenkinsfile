@@ -14,7 +14,12 @@ pipeline {
         }
         stage('Build Maven') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat 'mvn clean package'
+            }
+        }
+        stage('Generate Allure Report') {
+            steps {
+                bat 'mvn allure:report'
             }
         }
         stage('Build Docker Image') {
@@ -49,5 +54,16 @@ pipeline {
                 }
             }
         }
-    }  
+    }
+    post {
+        always {
+            allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'target/allure-results']]
+            ])
+        }
+    }
 }

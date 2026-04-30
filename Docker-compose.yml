@@ -1,0 +1,41 @@
+name: harmo-gestion
+services:
+  db:
+    image: mysql:8.3.0
+    container_name: harmo-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: harmogestion
+      MYSQL_USER: exempleuser
+      MYSQL_PASSWORD: exemplepass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  harmo-api:
+    image: cyril54000/harmogestion-api:latest
+    container_name: harmo-api
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/harmogestion
+      SPRING_DATASOURCE_USERNAME: exempleuser
+      SPRING_DATASOURCE_PASSWORD: exemplepass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  harmo-web:
+    image: cyril54000/harmogestion-web:latest
+    container_name: harmo-web
+    depends_on:
+      - harmo-api
+    ports:
+      - "8081:8081"
+    restart: always
+    environment:
+      API_BASE_URL: http://harmo-api:8080
+
+volumes:
+  db_data:
