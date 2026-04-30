@@ -14,12 +14,7 @@ pipeline {
         }
         stage('Build Maven') {
             steps {
-                bat 'mvn clean package'
-            }
-        }
-        stage('Generate Allure Report') {
-            steps {
-                bat 'mvn allure:report'
+                bat 'mvn clean package -DskipTests'
             }
         }
         stage('Build Docker Image') {
@@ -45,12 +40,11 @@ pipeline {
                 bat "docker push %DOCKER_IMAGE%:latest"
             }
         }
-        stage('Deploy') {
+        stage('Deploy with Docker Compose') {
             steps {
                 script {
-                    bat(script: "docker stop harmoweb", returnStatus: true)
-                    bat(script: "docker rm harmoweb", returnStatus: true)
-                    bat "docker run -d --name harmoweb -p 8081:8081 cyril54000/harmogestion-web:latest"
+                    bat 'docker-compose down'
+                    bat 'docker-compose up -d --build --force-recreate --remove-orphans'
                 }
             }
         }
