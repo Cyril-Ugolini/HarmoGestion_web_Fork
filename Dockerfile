@@ -1,13 +1,9 @@
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:25-jdk
 
 WORKDIR /app
 
 COPY target/*.jar app.jar
 
-<<<<<<< HEAD
-EXPOSE 8080
-=======
 EXPOSE 8081
->>>>>>> 6c516523f30edcb563265042e06b1f0581d901f0
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
