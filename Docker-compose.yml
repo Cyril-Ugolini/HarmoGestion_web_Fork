@@ -5,10 +5,10 @@ services:
     container_name: harmo-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: harmogestion
-      MYSQL_USER: exempleuser
-      MYSQL_PASSWORD: exemplepass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
 
@@ -21,10 +21,10 @@ services:
       - "8080:8080"
     restart: always
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/harmogestion
-      SPRING_DATASOURCE_USERNAME: exempleuser
-      SPRING_DATASOURCE_PASSWORD: exemplepass
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
 
   harmo-web:
     image: cyril54000/harmogestion-web:latest
@@ -35,7 +35,7 @@ services:
       - "8081:8081"
     restart: always
     environment:
-      API_BASE_URL: http://harmo-api:8080
+      API_BASE_URL: ${API_BASE_URL}
 
 volumes:
   db_data:

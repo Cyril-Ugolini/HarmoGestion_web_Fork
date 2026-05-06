@@ -5,6 +5,9 @@ target/
 !**/src/test/**/target/
 data.properties
 
+# Fichier d'environnement - ne jamais commiter
+.env
+
 ### Log, target and Javadoc ###
 *.log
 *.lck
